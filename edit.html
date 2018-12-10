@@ -16,7 +16,7 @@
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-2">
     <div class="container">
-      <a href="Main_page.html" class="navbar-brand"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/49/IIIT_Sri_City_Logo.png/220px-IIIT_Sri_City_Logo.png" style="width: 32px; height: 32px; margin-right: 16px;"> <h4> Student Performance System </h4> </a>
+      <a href="Main_page.html" class="navbar-brand"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/49/IIIT_Sri_City_Logo.png/220px-IIIT_Sri_City_Logo.png" style="width: 90px; height: 90px; margin-right: 16px;"> <font size="108" > STUDENT PERFORMANCE SYSTEM</font></a>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -25,9 +25,15 @@
 
         <ul class="navbar-nav ml-auto">
 		
-		
-          <li class="nav-item">
-            <a href="login.html" class="nav-link">
+		<!--li class="nav-item dropdown mr-3">
+            
+             <!--a href="admin.html" class="dropdown-item">
+                <i class="fas fa-cog"></i> Back
+              </a>
+         </li--> 
+          
+            <li class="nav-item">
+            <a href="Main_page.html" class="nav-link">
               <i class="fas fa-user-times"></i> Logout
             </a>
           </li>
@@ -56,7 +62,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3"> 
-          <a href="admin.html" class="btn btn-light btn-block">
+          <a href="adminhome.html" class="btn btn-light btn-block">
           <i class="fas fa-arrow-left"></i> Back
           </a>
         </div>
@@ -77,9 +83,8 @@
               <h4>EDIT ATTENDANCE</h4>
             </div>
             <div class="card-body">
-              <form action="{% url 'x' %}" method='POST'>
+              <form action="{% url 'openedit' %}" method='POST'>
 				{% csrf_token %}
->
                 <div class="form-group">
                   Student Id
                   <input type="text" class="form-control" name='rollno'>

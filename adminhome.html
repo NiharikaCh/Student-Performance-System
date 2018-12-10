@@ -11,13 +11,13 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'student/style.css' %}">
-  <title>B08 Admin </title>
+  <title>STUDENT PERFORMANCE SYSTEM</title>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-2">
     <div class="container">
-      <a href="" class="navbar-brand"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/49/IIIT_Sri_City_Logo.png/220px-IIIT_Sri_City_Logo.png" style="width: 54px; height: 54px; margin-right: 10px;">Student Performance System</a>
+      <a href="Main_page.html" class="navbar-brand"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/49/IIIT_Sri_City_Logo.png/220px-IIIT_Sri_City_Logo.png" style="width: 90px; height: 90px; margin-right: 10px;"><font size="108" > STUDENT PERFORMANCE SYSTEM</font></a>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -71,23 +71,50 @@
         <div class="col-md-3">
         
           
-     
+  <div class="custom-file">
+
+<form action="{% url 'upload_attendance' %}" method="POST">
+				{% csrf_token %}
+                <input type="file" class="custom-file-input" name="file" >
+				
+                <label for="image" class="custom-file-label">Choose File</label><br><br><br>
+
+				<input type="submit" value="UPLOAD ATTENDANCE" class="btn btn-primary btn-block">
+                <!--small class="form-text text-muted">Max Size 3mb</small
+               
+                <div class="col-md-6"><br>
+          <a href="#" class="btn btn-dark btn-block" data-toggle="modal" data-target="#UPLOADModal">
+            <i class="fas fa"> UPLOAD</i>
+          </a>
+        </div> -->
+              </div>      
+
+
+
+
+
+
+
+
+
+
+
+
               
            
-             <div class="card-body">
+           <!--  <div class="card-body">
               <form action="{% url 'upload_attendance' %}" method="POST">
 				{% csrf_token %}
                 <div class="form-group">
-                 file <input type="text" name ="file"class="form-control" > 
+                 Upload Attendance <input type="text" name ="file"class="form-control" > 
 					&nbsp;    &nbsp;
-				  	<a href="#" class="btn btn-success btn-block">
-            		<i class="fas fa-check"></i> UPLOAD FILE
-          			</a>
+				  	<input type="submit" value="UPLOAD ATTENDANCE" class="btn btn-primary btn-block">
 				</div>
 				
-          
+          </form>
+			</div> -->
            
-	    <div class="col-md-11">
+	    <div class="col-md-18">
 			<a href="edit.html" class="btn btn-success btn-blocks"> 
             <i class="fas fa"></i> EDIT ATTENDANCE
           	</a>
@@ -101,8 +128,15 @@
             <i class="fas fa"></i> ADD ACHIEVEMENTS
           </a>
         </div>
-			</form>
-			</div>
+		&nbsp;
+        &nbsp;
+        <blockquote>
+		<blockquote>
+		<div class="col-md-13">
+			<a href="f1.html" class="btn btn-success btn-blocks"> 
+            <i class="fas fa"></i> VIEW UPDATED ATTENDANCE
+          	</a>
+        </div>	
 		</div>
       </div>
     </div>
