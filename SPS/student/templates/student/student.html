@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +17,7 @@
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-377uu7u">
     <div class="container">
-      <a href="index.html" class="navbar-brand"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/49/IIIT_Sri_City_Logo.png/220px-IIIT_Sri_City_Logo.png" style="width: 32px; height: 32px; margin-right: 8px;">Student Performance System</a>
+      <a href="Main_page.html" class="navbar-brand"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/49/IIIT_Sri_City_Logo.png/220px-IIIT_Sri_City_Logo.png" style="width: 32px; height: 32px; margin-right: 8px;">Student Performance System</a>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -34,8 +35,8 @@
               
           
           <li class="nav-item">
-            <a href="Main page.html" class="nav-link">
-              <i class="fas fa-user"></i>LOG OUT
+            <a href="Main_page.html" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>LOG OUT
             </a>
           </li>
         </ul>
@@ -58,40 +59,38 @@
   <!-- ACTIONS -->
   <section id="actions" class="py-4 mb-4 bg-light">
     <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <br></br>
-          &nbsp
-          &nbsp<br>
-          </br>
-          <br>
-          </br>
-          <a href="Acad.html" class="btn btn-primary btn-block data-toggle="modal" data-target="#">
-            <i class="fas fa">ACADEMICS</i>
-          </a>
-        </div>
-        </div>
-        &nbsp
-        <div class="row">
-        <div class="col-md-3">
-          <a href="Stu atten.html" class="btn btn-success btn-block data-toggle="modal" data-target="#" >
-            <i class="fas fa">ATTENDANCES</i>
-          </a>
-        </div>
-        </div>
-        &nbsp
-        <div class="row">
+     
+		<form action="{% url 'func' %}" method="POST">
+				{% csrf_token %}
+				<input type="hidden" name="id" value="{{p}}">
+				<input type="hidden" name="pwd" value="{{lp}}">
+				<!--<input type="hidden" name="xid" value="1">-->
+         	    <input type="submit" value="ACADEMICS" class="btn btn-primary btn-block" style="width:250px">
+		</form>
+
+
+   
+       <br>
+        <form action="{% url 'phjmarks' %}" method="POST">
+				{% csrf_token %}
+				<input type="hidden" name="id" value="{{p}}">
+				<input type="hidden" name="pwd" value="{{lp}}">
+				<!--<input type="hidden" name="xid" value="1">-->
+         	    <input type="submit" value="ATTENDANCE" class="btn btn-primary btn-block" style="width:250px">
+		</form>
+        
+      <!--  <div class="row">
         <div class="col-md-3">
           <a href="Overall.html" class="btn btn-warning btn-block data-toggle="modal" data-target="#">
             <i class="fas fa"> OVERALL PERFORMANCE</i>
           </a>
         </div>
+        </div> 
+        &nbsp -->
         </div>
-        &nbsp
-        
   </section>
 
-  
+
 
 
   <!-- FOOTER -->

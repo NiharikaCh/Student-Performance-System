@@ -14,9 +14,13 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-2">
     <div class="container">
-      <a href="#" class="navbar-brand"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/49/IIIT_Sri_City_Logo.png/220px-IIIT_Sri_City_Logo.png" style="width: 70px; height: 70px; margin-right: 8px;"><Student Performance System></a>
+      <a href="Main_page.html" class="navbar-brand"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/49/IIIT_Sri_City_Logo.png/220px-IIIT_Sri_City_Logo.png" style="width: 90px; height: 90px; margin-right: 16px;"> <font size="108" > STUDENT PERFORMANCE SYSTEM</font></a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
     </div>
   </nav>
 
@@ -26,26 +30,33 @@
       <div class="row">
         <div class="col-md-5">
           <h1>
-            <i class="fas fa-user"></i>Student Performance System</h1>
+            <i class="fas fa-user"></i> Login </h1>
         </div>
       </div>
     </div>
   </header>
-
-  <!-- ACTIONS -->
-  <section id="actions" class="py-4 mb-4 bg-light">
+<section id="actions" class="py-4 mb-4 bg-light"  >
+  <div style="float:right;" >
     <div class="container">
       <div class="row">
+        <div class="col-md-3"> 
+          <a href="Main_page.html" class="btn btn-primary btn-block" style="height:35px;width:100px">
+          <i class="fas fa-arrow-left"></i> Back
+          </a>
+        </div>
+	  </div>
+		</div>
+		</div>
+		</section> 
 
-      </div>
-    </div>
-  </section>
+  <!-- ACTIONS -->
 
   <!-- LOGIN -->
   <section id="login">
-    <div class="container">
+    <div class="container"> 
       <div class="row">
         <div class="col-md-6 mx-auto">
+        {% if t %}
           <div class="card">
             <div class="card-header">
               <h4>Account Login</h4>
@@ -54,22 +65,54 @@
               <form action="{% url 'login1' %}" method="POST">
 				{% csrf_token %}
                 <div class="form-group">
-                  <label for="email">ID</label>
-                  <input type="text1" class="form-control" name='id'>
+                  <label for="email">ID <span class="req">*</span> </label>
+                  <input type="text" name="id" placeholder="Enter ID" class="form-control" required>
                 </div>
                 <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" name='pwd'>
+                  <label for="password">Password <span class="req">*</span> </label>
+                  <input type="password" name="pwd" placeholder="Enter Password" class="form-control" required>
                 </div>
+                
                 <input type="submit" value="Login" class="btn btn-primary btn-block">
                 
                  </form>
               <div class="col-md-15"><br>
-          <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#SignUpModal">
+          <a href="#" class="btn btn-success btn-block">
             <i class="fas fa"></i> Sign Up
           </a>
+          <div class="alert alert-success" style="color:red">
+                        <a class="close" href="#" data-dismiss="alert" style="color:red">×</a>
+
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="color:red"> {{ t }} </span>
+
+                    </div>
         </div>
+        {% else %}
+        <div class="card">
+            <div class="card-header">
+              <h4>Account Login</h4>
             </div>
+            <div class="card-body">
+              <form action="{% url 'login1' %}" method="POST">
+				{% csrf_token %}
+                <div class="form-group">
+                  <label for="email">ID <span class="req">*</span> </label>
+                  <input type="text" name="id" placeholder="Enter ID" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password <span class="req">*</span> </label>
+                  <input type="password" name="pwd" placeholder="Enter Password" class="form-control" required>
+                </div>
+                
+                <input type="submit" value="Login" class="btn btn-primary btn-block">
+                
+                 </form>
+              <div class="col-md-15"><br>
+          <a href="#" class="btn btn-success btn-block">
+            <i class="fas fa"></i> Sign Up
+          </a>
+          {% endif %}
+        </div> 
              
           </div>
           
@@ -77,10 +120,13 @@
         
       </div>
     </div>
-    
-    
-  </section>
+     
+         
 
+      
+                   
+            
+  </section>
   <!-- FOOTER -->
   <footer id="main-footer" class="bg-dark text-white mt-0 p-0">
     <div class="container">
@@ -95,58 +141,7 @@
       </div>
     </div>
   </footer>
-<!-- ADD Sign Up MODAL -->
-<div class="modal fade" id="SignUpModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header bg-warning py-4 text-white">
-          <h5 class="modal-title">Sign Up</h5>
-          <button class="close" data-dismiss="modal">
-            <span>&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            
-            <div class="form-group">
-              <label for="name">First Name</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="name">Middle Name</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="name">Last Name</label>
-              <input type="text" class="form-control">
-            </div>
-            
-            <div class="form-group">
-              <label for="name">ID</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-                  <h5>Email</h5>
-                  <li><input type="email" name="text1" class="form-control"></li>
-                </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="password2">Confirm Password</label>
-              <input type="password" class="form-control">
-            </div>
-            <input type="submit" value="Submit" class="btn btn-warning" onclick="ValidateEmail(document.form1.text1)"/>
-          </form>
-        </div>
-        <div class="modal-footer">
-          
-           
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
@@ -154,23 +149,7 @@
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
     crossorigin="anonymous"></script>
-<script>
-function ValidateEmail(inputText)
-{
-var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-if(inputText.value.match(mailformat))
-{
-document.form1.text1.focus();
-return true;
-}
-else
-{
-alert("You have entered an invalid email address!");
-document.form1.text1.focus();
-return false;
-}
-}</script>
 
   <script>
     // Get the current year for the copyright

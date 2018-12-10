@@ -16,7 +16,7 @@
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-2">
     <div class="container">
-      <a href="index.html" class="navbar-brand"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/49/IIIT_Sri_City_Logo.png/220px-IIIT_Sri_City_Logo.png" style="width: 90px; height: 90px; margin-right: 16px;"><font size="108" > STUDENT PERFORMANCE SYSTEM</font></a>
+      <a href="Main_page.html" class="navbar-brand"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/49/IIIT_Sri_City_Logo.png/220px-IIIT_Sri_City_Logo.png" style="width: 90px; height: 90px; margin-right: 16px;"><font size="108" > STUDENT PERFORMANCE SYSTEM</font></a>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -24,15 +24,10 @@
         
 
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown mr-3">
-            <a href="faculty h.html" class="nav-link">
-               Back
-            </a>
-            
-          </li>
+          
           <li class="nav-item">
             <a href="login.html" class="nav-link">
-              <i class="fas fa-user-times"></i> Logout
+              <i class="fas fa-sign-out-alt"></i> Logout
             </a>
           </li>
         </ul>
@@ -54,7 +49,19 @@
       </div>
     </div>
   </header>
-
+<section id="actions" class="py-4 mb-4 bg-light"  >
+  <div style="float:right;" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3"> 
+          <a href="faculty h.html" class="btn btn-light btn-block">
+          <i class="fas fa-arrow-left"></i> Back
+          </a>
+        </div>
+	  </div>
+		</div>
+		</div>
+		</section> 
   <!-- ACTIONS -->
   <span class="navbar-toggler-icon"></span>
 
@@ -76,12 +83,9 @@
             </div>
             <div class="form-group">
               <label for="name">PROJECT ID</label>
-              <input type="text" name="id" class="form-control">
+              <input type="text" name="pid" class="form-control">
             </div>
-			<div class="form-group">
-              <label for="name">PROJECT TYPE</label>
-              <input type="text" name="id" class="form-control">
-            </div>
+	
             <div class="form-group">
               <label for="name">MARKS</label>
               <input type="text" name="marks" class="form-control">

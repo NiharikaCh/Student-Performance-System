@@ -25,7 +25,7 @@ SECRET_KEY = '4h4d$v2)b78-^ejcxazny9-&g()wy60t05i7a0h4sbohgc6@+m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME' : 'ITS',
 		'USER' : 'root',
-		'PASSWORD' : 'vasu',
+		'PASSWORD' : 'mp$631999',
 		'HOST' : 'localhost',
 		'PORT' : '',
 		
@@ -124,3 +124,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT=587
+EMAIL_HOST_USER="spsattendance3@gmail.com"
+EMAIL_HOST_PASSWORD="guessit99"
+EMAIL_USE_TLS=True
