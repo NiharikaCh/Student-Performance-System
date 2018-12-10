@@ -1,6 +1,6 @@
 from django.db import models
+from django.db import connection  
 
-# Create your models here.
 class Student(models.Model):
 	Student_Id = models.CharField(max_length=20,primary_key=True)
 	Student_First_Name = models.CharField(max_length=45)
@@ -12,20 +12,17 @@ class Student(models.Model):
 	Student_Registered_Year = models.IntegerField()
 	Club_President = models.CharField(max_length=20, null=True)
 	Club_Vicepresident = models.CharField(max_length=20,null=True)
+	student_image = models.ImageField(null=True)
 
 class Academic_Course(models.Model):
 	Academic_Course_Id = models.CharField(max_length=20,primary_key=True,default='C1')
 	Academic_Course_Name = models.CharField(max_length=100)
-	
 class Registration(models.Model):
-	Registration_Id =  models.IntegerField(primary_key=True)
 	Student_Id = models.ForeignKey(Student,on_delete=models.CASCADE)
 	Academic_Course_Id = models.ForeignKey(Academic_Course,on_delete=models.CASCADE)
-	Semester = models.CharField(max_length=10)
-
+	Semester = models.CharField(max_length=10,null=True)
 class Attendance(models.Model):
 	Student_Id = models.ForeignKey(Student,on_delete=models.CASCADE)
-	Registration_Id =  models.ForeignKey(Registration,on_delete=models.CASCADE)
 	Academic_Course_Id = models.ForeignKey(Academic_Course,on_delete=models.CASCADE)
 
 	M1_01 = models.CharField(max_length=10,null=True)
@@ -34,6 +31,7 @@ class Attendance(models.Model):
 	M1_04 = models.CharField(max_length=10,null=True)
 	M1_05 = models.CharField(max_length=10,null=True)
 	M1_06 = models.CharField(max_length=10,null=True)
+	M1_07 = models.CharField(max_length=10,null=True)
 	M1_08 = models.CharField(max_length=10,null=True)
 	M1_09 = models.CharField(max_length=10,null=True)
 	M1_10 = models.CharField(max_length=10,null=True)
@@ -65,6 +63,7 @@ class Attendance(models.Model):
 	M2_04 = models.CharField(max_length=10,null=True)
 	M2_05 = models.CharField(max_length=10,null=True)
 	M2_06 = models.CharField(max_length=10,null=True)
+	M2_07 = models.CharField(max_length=10,null=True)
 	M2_08 = models.CharField(max_length=10,null=True)
 	M2_09 = models.CharField(max_length=10,null=True)
 	M2_10 = models.CharField(max_length=10,null=True)
@@ -96,6 +95,7 @@ class Attendance(models.Model):
 	M3_04 = models.CharField(max_length=10,null=True)
 	M3_05 = models.CharField(max_length=10,null=True)
 	M3_06 = models.CharField(max_length=10,null=True)
+	M3_07 = models.CharField(max_length=10,null=True)
 	M3_08 = models.CharField(max_length=10,null=True)
 	M3_09 = models.CharField(max_length=10,null=True)
 	M3_10 = models.CharField(max_length=10,null=True)
@@ -127,6 +127,7 @@ class Attendance(models.Model):
 	M4_04 = models.CharField(max_length=10,null=True)
 	M4_05 = models.CharField(max_length=10,null=True)
 	M4_06 = models.CharField(max_length=10,null=True)
+	M4_07 = models.CharField(max_length=10,null=True)
 	M4_08 = models.CharField(max_length=10,null=True)
 	M4_09 = models.CharField(max_length=10,null=True)
 	M4_10 = models.CharField(max_length=10,null=True)
@@ -158,6 +159,7 @@ class Attendance(models.Model):
 	M5_04 = models.CharField(max_length=10,null=True)
 	M5_05 = models.CharField(max_length=10,null=True)
 	M5_06 = models.CharField(max_length=10,null=True)
+	M5_07 = models.CharField(max_length=10,null=True)
 	M5_08 = models.CharField(max_length=10,null=True)
 	M5_09 = models.CharField(max_length=10,null=True)
 	M5_10 = models.CharField(max_length=10,null=True)
@@ -213,21 +215,41 @@ class Gradeschema(models.Model):
 	C = models.CharField(max_length=10)
 	C2 = models.CharField(max_length=10)
 	D = models.CharField(max_length=10)
+	Semester = models.CharField(max_length=10,null=True)
 
 class Gradeweightage(models.Model):
 	Facultycourse_Id = models.ForeignKey(Faculty,on_delete=models.CASCADE,default=1)
 	Exam_Type = models.CharField(max_length=20,null=True)
 	tmarks = models.DecimalField(max_digits=10,decimal_places=2,null=True)
 	wmarks = models.DecimalField(max_digits=10,decimal_places=2,null=True)	
+	Semester = models.CharField(max_length=10,null=True)
 
 class Academic_score(models.Model):
 	Student_Id = models.ForeignKey(Student,on_delete=models.CASCADE)
-	Registration_Id =  models.ForeignKey(Registration,on_delete=models.CASCADE)
 	Academic_Course_Id = models.ForeignKey(Academic_Course,on_delete=models.CASCADE,default='C1')
 	Exam_Type = models.CharField(max_length=20)
 	Marks = models.DecimalField(max_digits=10,decimal_places=2,null=True)
 	Marks_perc = models.DecimalField(max_digits=10,decimal_places=2,null=True)
-	Facultycourse_Id = models.ForeignKey(Faculty,on_delete=models.CASCADE,default=1)	
+	Facultycourse_Id = models.ForeignKey(Faculty,on_delete=models.CASCADE,default=1)
+	Semester = models.CharField(max_length=10,null=True)
+	#course = models.CharField(max_length=10,null=True)
+
+	def function(q,s):  
+		# create a cursor  
+		cur = connection.cursor()   
+        # execute the stored procedure passing in   
+        # search_string as a parameter  
+		cur.callproc('display',[q,s,])  
+        # grab the results  
+		results = cur.fetchall() 
+		l=[]
+		for i in results:
+			l.append(list(i)) 
+		print("l",l)
+		cur.close()  
+  
+        # wrap the results up into Document domain objects   
+		return l 
 
 
 class Club(models.Model):
