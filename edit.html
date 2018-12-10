@@ -48,8 +48,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <h1>
-		  <h1>
+            <h1>
             <i class="fas fa-user"></i> Admin </h1>
             
         </div>
@@ -62,9 +61,10 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3"> 
-          <a href="adminhome.html" class="btn btn-light btn-block">
-          <i class="fas fa-arrow-left"></i> Back
-          </a>
+          <form action="{% url 'openedit' %}" method='POST'>{% csrf_token %}
+               <input type="submit" value="Back" class="btn btn-primary btn-block" style="height:35px;width:100px" >
+          </form>
+          
         </div>
 	  </div>
 		</div>
@@ -72,50 +72,69 @@
 		</section> 
   <!-- ACTIONS -->
   <span class="navbar-toggler-icon"></span>
-
   <!-- DETAILS -->
-  <section id="details">
+ <section id="details">
     <div class="container">
+    
+    {% if p %}
+    
+    {{p}}
+    
+    {% else %}
       <div class="row">
         <div class="col">
           <div class="card">
             <div class="card-header">
-              <h4>EDIT ATTENDANCE</h4>
+              <h4 class="thead-dark">EDIT ATTENDANCE</h4>
             </div>
             <div class="card-body">
-              <form action="{% url 'openedit' %}" method='POST'>
-				{% csrf_token %}
-                <div class="form-group">
-                  Student Id
-                  <input type="text" class="form-control" name='rollno'>
-                </div>
-                <div class="form-group">
-                  Course Id
-				  <input type="text" class="form-control" name='courseid'>
-                  
-                </div>
-				<div class="form-group">
-                  Date
-				  <input type="date" class="form-control" name='date'>
-                  
-                </div>
-				<div class="form-group">
-                  STATUS(PRESENT/ABSENT)
-				  <input type="text" class="form-control" name='status' >
-                  
-                </div>
-                <div class="col-md-2">
-				 <input type="submit" class="btn btn-success btn-block" value="submit"/> 
-				</div>
+     
+              <form action="{% url 'attedit' %}" method='POST'>{% csrf_token %}
+              <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                <th> Student ID </th>
+                <th> Attendance </th>
+                <th> X </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in qw %}
+              
+                <tr>
+                {% for j in i %}
+                {% if j == 'A' or j == 'P' %} 
+                <td> {{j}} </td>
+                {% else %}
+                <td><input type="checkbox" name="{{forloop.parentloop.counter0}}" value="{{j}}"> &nbsp {{j}}</td>
                 
+                {% endif %}
+                
+                {% endfor %}
+                <td> <input type="text" name="ns"> </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              </table>
+               <input type="hidden" name="lt" value="{{l}}">
+               <input type="hidden" name="d" value="{{d}}">
+               <input type="hidden" name="cid" value="{{cid}}">
+              <div class="col-md-2">
+		<input type="submit" class="btn btn-success btn-block" value="submit"/> 
+	      </div>   
               </form>
             </div>
           </div>
         </div>
       </div>
+      {% endif %}
     </div>
   </section>
-  
+ <!-- <form action="{% url 'attedit' %}" method="POST">{% csrf_token %}
+  <input type="checkbox" name="vehicle" value="bike" >vcuwe<br>
+  <input type="checkbox" name="vehicle" value="car" >cgwie<br>
+  <input type="submit" value="submit" >
+  </form> -->
 <!--  <section id="actions" class="py-4 mb-4 bg-light">
     <div class="container">
       <div class="row">
